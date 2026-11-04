@@ -9,12 +9,25 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@base-ui/react": "^1.9.0",
+    "@remotion/media": "^4.0.540",
+    "@remotion/player": "4.0.540",
+    "@remotion/web-renderer": "4.0.540",
+    "@tanstack/react-query": "^5.105.3",
+    "axios": "^1.21.0",
+    "class-variance-authority": "^0.7.1",
+    "cn": "^0.4.0",
+    "js-cookie": "^3.0.8",
+    "lucide-react": "^1.67.0",
     "next": "16.4.4",
     "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "react-dom": "19.3.0",
+    "remotion": "4.0.540",
+    "tw-animate-css": "^1.4.0"
   },
   "devDependencies": {
     "@tailwindcss/turbopack": "^4",
+    "@types/js-cookie": "^3.0.6",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
@@ -22,5 +35,8 @@
     "eslint-config-next": "16.4.4",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "overrides": {
+    "minimatch": "^11.0.1"
   }
 }
