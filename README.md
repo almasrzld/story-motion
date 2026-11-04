@@ -1,36 +1,30 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Animated Videos
 
-## Getting Started
+Studio lokal untuk menyusun draf dialog dua tokoh dari cerita pengguna, membuat audio TTS Bahasa Indonesia, lalu mempreview dan mengekspor video vertikal MP4.
 
-First, run the development server:
+## Provider dan biaya
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Ollama menjalankan LLM di komputer lokal. Cerita tidak dikirim ke layanan AI cloud untuk menyusun dialog.
+- Supertonic-3 berjalan lokal di komputer pengguna untuk TTS Bahasa Indonesia dengan preset suara pria dan wanita. Tidak memakai layanan cloud atau billing.
+- Preview dan ekspor memakai Remotion di browser. Ekspor membutuhkan browser dengan WebCodecs, misalnya Chrome yang terbaru.
+- Dialog harus ditinjau dan disetujui sebelum TTS dipanggil.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Konfigurasi lokal
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Pasang Ollama dan unduh model bahasa Indonesia yang sesuai dengan kapasitas komputer. `qwen3:8b` tersedia sebagai pilihan multilingual (unduhan sekitar 5.2 GB); ubah model atau endpoint jika memilih model/port Ollama lain.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Pasang server lokal Supertonic dengan `pip install 'supertonic[serve]'`, lalu jalankan `supertonic serve --host 127.0.0.1 --port 7788`. Pertama kali dijalankan, server mengunduh model TTS. Env example memakai preset `M1` (pria) dan `F1` (wanita), serta bahasa `id`.
 
-## Learn More
+Salin `.env.example` menjadi `.env.local`, lalu jalankan aplikasi dengan `npm run dev`. Masukkan nama tokoh dan cerita, buat draf dialog, tinjau/edit, lalu setujui untuk membuat suara lokal. Di langkah preview, gunakan **Unduh MP4**.
 
-To learn more about Next.js, take a look at the following resources:
+Nilai environment wajib:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `OLLAMA_CHAT_URL`
+- `OLLAMA_MODEL`
+- `SUPERTONIC_TTS_URL`
+- `SUPERTONIC_LANGUAGE`
+- `SUPERTONIC_MALE_VOICE`
+- `SUPERTONIC_FEMALE_VOICE`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Aturan kerja agent ada di [AGENTS.md](./AGENTS.md).
+# story-motion
